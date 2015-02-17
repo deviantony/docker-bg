@@ -1,0 +1,14 @@
+loadbalancer:
+  image: eboraas/apache
+  ports:
+    - "8080:80"
+  links:
+    - siteA
+    - siteB
+    - siteC
+siteA:
+  image: eboraas/apache
+siteB:
+  image: eboraas/apache
+siteC:
+  image: eboraas/apache
