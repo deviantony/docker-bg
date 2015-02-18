@@ -1,20 +1,20 @@
 <VirtualHost *:80>
-		ProxyRequests off
-        
-        ServerName docker-bg.com
+  ProxyRequests off
 
-        <Proxy balancer://mybalancer>
-                BalancerMember http://localhost:8080
-                BalancerMember http://localhost:8081
-				BalancerMember http://localhost:8082
+  ServerName docker-bg.com
 
-                ProxySet lbmethod=byrequests
-        </Proxy>
+  <Proxy balancer://mybalancer>
+    BalancerMember http://siteA:80
+    BalancerMember http://siteB:80
+    BalancerMember http://siteC:80
 
-        <Location /balancer-manager>
-                SetHandler balancer-manager
-        </Location>
+    ProxySet lbmethod=byrequests
+  </Proxy>
 
-        ProxyPass /balancer-manager !
-        ProxyPass / balancer://mybalancer/
+  <Location /balancer-manager>
+    SetHandler balancer-manager
+  </Location>
+
+  ProxyPass /balancer-manager !
+  ProxyPass / balancer://mybalancer/
 </VirtualHost>

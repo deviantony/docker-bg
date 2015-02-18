@@ -1,5 +1,5 @@
 loadbalancer:
-  image: eboraas/apache
+  build: load-balancer/
   ports:
     - "8080:80"
   links:
@@ -8,7 +8,13 @@ loadbalancer:
     - siteC
 siteA:
   image: eboraas/apache
+  volumes:
+    - siteA/www:/var/www
 siteB:
   image: eboraas/apache
+  volumes:
+    - siteA/www:/var/www
 siteC:
   image: eboraas/apache
+  volumes:
+    - siteA/www:/var/www  
