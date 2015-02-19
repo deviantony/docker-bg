@@ -1,7 +1,17 @@
-FROM eboraas/apache
+FROM nginx:1.7
 
-ADD default-site /etc/apache2/sites-available/default
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt-get update -qq && \
+    apt-get -y install curl runit && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN a2enmod proxy proxy_http proxy_balancer
+ENV CT_URL https://github.com/hashicorp/consul-template/releases/download/v0.6.5/consul-template_0.6.5_linux_amd64.tar.gz
+RUN curl -L $CT_URL | tar -C /usr/local/bin --strip-components 1 -zxf -
 
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
+ADD nginx.service /etc/service/nginx/run
+ADD consul-template.service /etc/service/consul-template/run
+
+RUN rm -v /etc/nginx/conf.d/*
+ADD nginx.conf /etc/consul-templates/nginx.conf
+
+CMD ["/usr/bin/runsvdir", "/etc/service"]

@@ -1,20 +1,6 @@
 loadbalancer:
   build: load-balancer/
-  ports:
-    - "8080:80"
   links:
-    - siteA
-    - siteB
-    - siteC
-siteA:
-  image: eboraas/apache
-  volumes:
-    - siteA/www:/var/www
-siteB:
-  image: eboraas/apache
-  volumes:
-    - siteA/www:/var/www
-siteC:
-  image: eboraas/apache
-  volumes:
-    - siteA/www:/var/www  
+  - consul
+  ports:
+  - "80:80"
