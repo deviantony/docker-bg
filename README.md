@@ -27,7 +27,7 @@ $ fig up -d
 Start a "v1" container:
 
 ````
-$ docker run -d -e "SERVICE_NAME=app" -e "SERVICE_TAGS=production" -p 80 -d sitea
+$ docker run -d -e "SERVICE_NAME=my_app" -e "SERVICE_TAGS=my_tag" -p 80 -d sitea
 ````
 
 Point your browser at http://localhost to see the result.
@@ -35,7 +35,7 @@ Point your browser at http://localhost to see the result.
 Next, start a "v2" container:
 
 ````
-$ docker run -d -e "SERVICE_NAME=app" -e "SERVICE_TAGS=production" -p 80 -d siteb
+$ docker run -d -e "SERVICE_NAME=my_app" -e "SERVICE_TAGS=my_tag" -p 80 -d siteb
 ````
 
 Point your browser at http://localhost to see the result, you should now be load balanced between the 2 versions.
