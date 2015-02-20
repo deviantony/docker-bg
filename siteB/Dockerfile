@@ -1,3 +1,3 @@
 FROM eboraas/apache
 
-ADD index.html /var/www/index.html
+ADD www/index.html /var/www/index.html
