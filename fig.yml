@@ -6,13 +6,15 @@ loadbalancer:
   - "80:80"
 
 consul:
-  command: -server -bootstrap -advertise <ROUTABLE_IP>
+  command: -server -bootstrap -advertise 172.17.2.191
   image: progrium/consul:latest
   ports:
   - "8300:8300"
   - "8400:8400"
   - "8500:8500"
   - "8600:53/udp"
+  volumes:
+   - "/var/run/docker.sock:/var/run/docker.sock"
 
 registrator:
   command: consul://consul:8500
