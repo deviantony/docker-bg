@@ -33,7 +33,7 @@ Install fig:
 $ sudo pip install -U fig
 ````
 
-Update the *fig.yml* file and replace <ROUTABLE_IP> with a routable IP address (use your main interface IP address).
+Update the *fig.yml* file and replace *ROUTABLE_IP* with a routable IP address (use your main interface IP address).
 
 Build the 2 sites images:
 
