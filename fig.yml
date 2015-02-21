@@ -6,7 +6,7 @@ loadbalancer:
   - "80:80"
 
 consul:
-  command: -server -bootstrap -advertise 172.17.2.191
+  command: -server -bootstrap -advertise ROUTABLE_IP
   image: progrium/consul:latest
   ports:
   - "8300:8300"
